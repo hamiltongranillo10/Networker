@@ -1,11 +1,4 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Calculadora de productos, puntos, descuentos y ganancias para afiliados Hamilton Networker.">
-  <title>Calculadora de Afiliados | Hamilton Networker</title>
-  <style>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>
     :root{
       --ink:#17352a;--muted:#61736b;--cream:#f7faf6;--card:#ffffff;--line:#dbe8df;
       --green:#1b6747;--green-2:#2d8a62;--mint:#e9f6ee;--gold:#d4a94a;--gold-soft:#fff7df;
@@ -24,9 +17,7 @@
     .notice{font-size:.76rem;color:var(--muted);margin-top:16px}.footer{max-width:1360px;margin:auto;padding:0 22px 35px;color:var(--muted);font-size:.74rem}.login-screen{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{max-width:520px;width:100%;padding:34px}.login-card h1{font-family:Georgia,serif;font-size:2.2rem;line-height:1.05;margin:16px 0 10px}.login-card p{color:var(--muted);font-size:.9rem}.login-brand{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:900}.brand-logo{width:42px;height:42px;object-fit:contain;border-radius:12px;display:block}.login-form{display:grid;gap:12px;margin-top:22px}.local-note{background:#edf8f0;border:1px solid #c8e4d1;color:#245e43;padding:12px;border-radius:12px;font-size:.78rem;margin-top:16px}.toast{position:fixed;right:20px;bottom:20px;z-index:40;background:#17352a;color:white;padding:12px 15px;border-radius:12px;box-shadow:var(--shadow);font-size:.82rem;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateY(0)}
     @media(max-width:980px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.summary-card{position:static}.hero-stat{min-height:220px}}
     @media(max-width:620px){.topbar-inner{padding:11px 14px}.shell{padding:20px 14px 45px}.hero-copy,.panel,.summary-card,.login-card{padding:20px}.userbar{gap:6px}.user-email{max-width:130px}.userbar .btn{padding:8px}.hero h2{font-size:2.2rem}.controls{display:grid;grid-template-columns:1fr}.field,.search-field{min-width:0}.stat-grid{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr 1fr}.summary-actions .btn{flex:1}.brand small{display:none}}
-  </style>
-</head>
-<body>
+  </style></head><body>
   <div id="loginView" class="login-screen">
     <section class="login-card">
       <div class="login-brand"><img class="brand-logo" src="logo-hamilton.png" alt="Logo Hamilton Networker"><span>Hamilton Networker</span></div>
@@ -41,14 +32,14 @@
   </div>
 
   <div id="appView" class="app hidden">
-    <header class="topbar"><div class="topbar-inner"><div class="brand"><img class="brand-logo" src="logo-hamilton.png" alt="Logo Hamilton Networker"><div><h1>Calculadora de Afiliados</h1><small>Hamilton Networker · catálogo de referencia</small></div></div><div class="userbar"><span class="user-email" id="userEmail"></span><button class="btn btn-ghost btn-small" id="logoutBtn">Salir</button></div></div></header>
+    <header class="topbar"><div class="topbar-inner"><div class="brand"><img class="brand-logo" src="logo-hamilton.png" alt="Logo Hamilton Networker"><div><h1>Calculadora de Afiliados</h1><small>Hamilton Networker · catálogo real de Ecuador</small></div></div><div class="userbar"><span class="user-email" id="userEmail"></span><button class="btn btn-ghost btn-small" id="logoutBtn">Salir</button></div></div></header>
     <main class="shell">
       <section class="hero">
         <div class="hero-card hero-copy"><span class="eyebrow"><i></i> Herramienta para planificar</span><h2>Arma tu pedido y mira tus números <span>antes de comprar.</span></h2><p>Elige tu nivel de descuento, agrega productos y revisa en tiempo real los puntos, cuánto inviertes, cuánto venderías al precio público y tu ganancia estimada.</p></div>
         <div class="hero-stat"><h3>Tu resumen de hoy</h3><div class="stat-grid"><div class="stat"><strong id="heroPoints">0</strong><span>puntos seleccionados</span></div><div class="stat"><strong id="heroItems">0</strong><span>unidades</span></div><div class="stat"><strong id="heroCost">$0.00</strong><span>inversión</span></div><div class="stat"><strong id="heroProfit">$0.00</strong><span>ganancia estimada</span></div></div></div>
       </section>
 
-      <section class="panel" style="margin-bottom:22px"><div class="controls"><div class="field"><label for="countrySelect">País y catálogo</label><select id="countrySelect"><option value="EC">Ecuador · USD</option><option value="AR">Argentina · ARS</option></select></div><div class="field"><label for="discountSelect">Mi descuento</label><select id="discountSelect"><option value="25">25% · afiliación normal</option><option value="30">30% · Kit Emprendedor</option><option value="35">35% · nivel avanzado</option><option value="40">40% · nivel avanzado</option></select></div><div class="field search-field"><label for="searchInput">Buscar producto o código</label><input id="searchInput" type="search" placeholder="Ej. Power Maker, Biocros, 2603201..."></div><button class="btn btn-secondary" id="clearSearch">Limpiar búsqueda</button></div><p class="notice" id="countryNote">Catálogo de Ecuador en dólares estadounidenses (USD). Verifica vigencia, país, disponibilidad y condiciones oficiales antes de comprar o vender.</p></section>
+      <section class="panel" style="margin-bottom:22px"><div class="controls"><div class="field"><label for="countryDisplay">País y catálogo</label><input id="countryDisplay" value="Ecuador · USD" readonly aria-label="País y catálogo"></div><div class="field"><label for="discountSelect">Mi descuento</label><select id="discountSelect"><option value="25">25% · afiliación normal</option><option value="30">30% · Kit Emprendedor</option><option value="35">35% · nivel avanzado</option><option value="40">40% · nivel avanzado</option></select></div><div class="field search-field"><label for="searchInput">Buscar producto o código</label><input id="searchInput" type="search" placeholder="Ej. Power Maker, Biocros, 2603201..."></div><button class="btn btn-secondary" id="clearSearch">Limpiar búsqueda</button></div><p class="notice" id="countryNote">Catálogo real de Ecuador en dólares estadounidenses (USD). Verifica vigencia, país, disponibilidad y condiciones oficiales antes de comprar o vender.</p></section>
 
       <section class="workspace">
         <div class="panel"><div class="panel-head"><div><h3>Catálogo de productos</h3><p class="panel-sub"><span id="resultCount">0</span> productos disponibles · agrega cantidades para construir tu lista.</p></div><span class="badge" id="discountBadge">25% seleccionado</span></div><div class="product-table-wrap"><table class="product-table"><thead><tr><th>Producto</th><th>Puntos</th><th>Tu costo</th><th>PVP</th><th>Ganancia/u.</th><th>Cantidad</th><th></th></tr></thead><tbody id="productRows"></tbody></table></div><div id="dataWarnings" class="warning hidden"></div></div>
@@ -57,83 +48,34 @@
     </main>
     <footer class="footer">Herramienta educativa de planificación. La ganancia mostrada es una diferencia matemática entre PVP y precio de compra, no una garantía de resultados. Los precios y puntos pueden cambiar.</footer>
   </div>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-  <script>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div><script>
     const PRODUCTS = [
-      ["2603201","POWER MAKER EVOLUCION, CAJA CON 30 SOBRES",110,45.39,42.37,39.34,36.31,69.00],
-      ["4850500","EGO FRUTAS DEL BOSQUE EVOL, SIX PACK (6 LATAS DE 355 ML)",27,16.78,15.66,14.54,13.42,25.50],
-      ["2075722","BIOCROS SUPREME CAJA 30 SOBRES 240G",54,25.00,23.34,21.67,20.00,38.00],
-      ["4250204","ALOE BETA PIÑA EVOLUCIÓN 960 ML",26,12.16,11.35,10.54,9.73,18.50],
-      ["6305929","ONE C MIX EVOLUCION CAJA 150 G",46,24.01,22.41,20.81,19.21,36.50],
-      ["1409621","FEM EVOLUCIÓN CAJA",56,25.66,23.95,22.24,20.53,39.00],
-      ["2505711","OPTIMUS EVOLUCION CAJA",64,29.27,27.32,25.37,23.42,44.50],
-      ["2350401","OMNIPLUS NARANJA EVOLUCION CAJA CON 30 SOBRES",87,40.46,37.76,35.07,32.37,61.50],
-      ["4160400","*AGUA BLU SUPREME, 600 ML",1,1.05,.98,.91,.84,1.60],
-      ["4250604","ALOE BETA PINA EVOLUCIÓN BOTELLA 200 ML",5,2.70,2.52,2.34,2.16,4.10],
-      ["3905934","AQTUA EVOLUCION, CAJA CON 30 SACHETS",118,49.34,46.05,42.76,39.47,75.00],
-      ["3304732","TMGN COFFE CAJA EVOLUCIÓN",39,24.34,22.72,21.09,19.47,37.00],
-      ["5105932","CAFEZZINO EVOLUCIÓN",52,30.27,28.25,26.23,24.21,46.00],
-      ["5177632","CAFEZZINO SIN ENDULZAR BOTE",58,32.57,30.40,28.23,26.05,49.50],
-      ["4404710","DOLCE VITA EVOLUCIÓN CAJA 30 SOBRES",70,35.85,33.46,31.07,28.68,54.50],
-      ["4650609","EGO 10 EVOLUCION BOTELLA 200 ML",5,2.70,2.52,2.34,2.16,4.10],
-      ["4903204","EGO LIFE EVOLUCION CAJA 30 SOBRES",38,23.36,21.80,20.24,18.69,35.50],
-      ["1260600","EGO PLANT EVOLUCION BOTELLA 200 ML",5,2.70,2.52,2.34,2.16,4.10],
-      ["1675700","ESTOP PLUS CAJA 30 SACHETS 450G",102,49.02,45.75,42.48,39.21,74.50],
-      ["1502208","FIBER’N PLUS EVOLUCIÓN CAJA 30 SOBRES 450G",70,37.83,35.31,32.79,30.26,57.50],
-      ["8453000","FLU-Y BOTE 60 CAPSULAS",44,17.10,15.96,14.82,13.68,26.00],
-      ["1729752","HOMO PLUS CAJA CON 30 SACHETS 180 G",55,25.00,23.34,21.67,20.00,38.00],
-      ["3659152","OML IQU LATA 12 OZ",42,24.67,23.02,21.38,19.73,37.50],
-      ["3659295","OML IQU LATA INDIVIDUAL 12 OZ",7,4.15,3.87,3.60,3.32,6.30],
-      ["1850610","KOLINA EVOLUCION BOTELLA 200 ML",5,2.70,2.52,2.34,2.16,4.10],
-      ["6724761","OMNILIFE PROBIOTIC EVOLUCION CAJA 30 SOBRES",66,33.22,31.01,28.79,26.58,50.50],
-      ["5025516","OMNILIFE VKIDS DOYPACK 400 G",71,35.20,32.85,30.51,28.16,53.50],
-      ["6571959","OMNIOST CAJA C/30 SOBRES 450 GRS",57,32.24,30.09,27.94,25.79,49.00],
-      ["2350430","OMNIPLUS FRUTAS EVOLUCION CAJA 30 SOBRES",87,40.46,37.76,35.07,32.37,61.50],
-      ["3000730","STARBIEN EVOLUCION CAJA CON 30 SOBRES",53,25.66,23.95,22.24,20.53,39.00],
-      ["3178516","SUPER MIX SUPREME VAINILLA, CAJA 30 SOBR",76,37.50,35.00,32.50,30.00,57.00],
-      ["3505605","TEATINO LIMÓN EVOLUCIÓN CAJA 30 SOBRES",63,25.67,23.96,22.25,20.53,39.00],
-      ["3505609","TEATINO MARACUYÁ EVOLUCIÓN 30 SOBRES",95,45.07,42.06,39.06,36.05,68.50],
-      ["3705934","UNDU EVOLUCION",107,43.42,40.52,37.63,34.73,66.00],
-      ["3875700","UZO SUPREME, CAJA CON 30 SACHETS",166,80.26,74.91,69.56,64.21,122.00]
+      ['4903204','EGO LIFE EVOLUCION CAJA 30 SOBRES',38,27.72,26.16,24.60,23.05,35.50],
+      ['5025516','OMNILIFE VKIDS DOYPACK 400 G',71,41.77,39.42,37.08,34.73,53.50],
+      ['5105932','CAFEZZINO EVOLUCIÓN',52,35.91,33.90,31.88,29.86,46.00],
+      ['5177632','CAFEZZINO SIN ENDULZAR BOTE',58,38.65,36.48,34.30,32.13,49.50],
+      ['6305929','ONE C MIX EVOLUCION CAJA 150 G',46,28.49,26.89,25.29,23.69,36.50],
+      ['6571959','OMNIOST CAJA C/30 SOBRES 450 GRS',57,38.26,36.11,33.96,31.81,49.00],
+      ['6724761','OMNILIFE PROBIOTIC EVOLUCION CAJA 30 SOBRES',66,39.43,37.21,35.00,32.78,50.50],
+      ['8453000','FLU-Y BOTE 60 CAPSULAS',44,20.30,19.16,18.02,16.88,26.00],
+      ['3505605','TEATINO LIMON EVOLUCION CAJA 30 SOBRES',63,30.46,28.75,27.04,25.33,39.00],
+      ['3505609','TEATINO MARACUYÁ EVOLUCIÓN 30 SOBRES',95,53.47,50.47,47.46,44.46,68.50],
+      ['3659152','OML IQU LATA 12 OZ',42,29.27,27.63,25.98,24.34,37.50],
+      ['3659295','OML IQU LATA INDIVIDUAL 12 OZ',7,4.92,4.65,4.37,4.09,6.30],
+      ['3705934','UNDU EVOLUCION',107,51.52,48.63,45.73,42.84,66.00],
+      ['3875700','UZO SUPREME, CAJA CON 30 SACHETS',166,95.25,89.90,84.55,79.19,122.00],
+      ['3905934','AQTUA EVOLUCION, CAJA CON 30 SACHETS',118,58.55,55.26,51.98,48.69,75.00],
+      ['3924734','AQTUA SUPREME, CAJA CON 30 SACHETS',112,57.78,54.53,51.28,48.04,74.00],
+      ['4160400','AGUA BLU SUPREME, 600 ML',1,1.25,1.18,1.11,1.04,1.60],
+      ['4250204','ALOE BETA PIÑA EVOLUCION 960 ML',26,14.43,13.62,12.81,12.00,18.50],
+      ['4250604','ALOE BETA PIÑA EVOLUCION BOTELLA 200 ML',5,3.20,3.02,2.84,2.66,4.10],
+      ['4404710','DOLCE VITA EVOLUCION CAJA 30 SOBRES',70,42.55,40.16,37.77,35.38,54.50],
+      ['4650609','EGO 10 EVOLUCION BOTELLA 200 ML',5,3.20,3.02,2.84,2.66,4.10],
+      ['4850500','EGO FRUTAS DEL BOSQUE EVOL LATA 355 ML',27,19.91,18.79,17.67,16.55,25.50]
     ].map(([code,name,points,p25,p30,p35,p40,pvp]) => ({code,name,points,prices:{25:p25,30:p30,35:p35,40:p40},pvp}));
 
-    const ARGENTINA_PRODUCTS = [
-      ["2350430","OMNIPLUS FRUTAS EVOLUCION 30 SACH 600 ML",87,45040.80,42422.15,39803.50,37184.85,52610.00],
-      ["3505605","TEATINO LIMON EVOLUCION CAJA C/SOBRES",63,32601.28,30705.86,28810.44,26915.01,38080.00],
-      ["2075722","BIOCROS SUPREME CAJA C/30 SACHETS",54,33979.65,32004.09,30028.53,28052.96,39690.00],
-      ["4160400","AGUA BLU SUPREME, 600 ML",2,2123.19,1999.75,1876.31,1752.86,2480.00],
-      ["4160400-TM","AGUA BLU SUPREME, 600 ML (TELEMARKETING)",2,3086.19,2962.59,2839.15,2715.70,4220.00],
-      ["4250604","ALOE BETA PIÑA EVOLUCION BOTELLA 200 ML",5,3612.85,3402.80,3192.75,2982.70,4220.00],
-      ["4250204","ALOE BETA PIÑA EVOLUCION BOTELLA 960 ML",26,15513.01,14611.09,13709.17,12807.25,18120.00],
-      ["3924734","AQTUA SUPREME, CAJA CON 30 SOBRES",112,68267.49,64298.45,60329.41,56360.37,79740.00],
-      ["5105932","CAFEZZINO EVOLUCION",52,55134.53,51929.03,48723.54,45518.04,64000.00],
-      ["4404710","DOLCE VITA EVOLUCION CAJA 30 SACH",70,43842.22,41293.25,38744.29,36195.32,51210.00],
-      ["4650609","EGO 10 EVOLUCION BOTELLA 200 ML",5,4104.16,3863.18,3622.20,3381.23,4840.00],
-      ["4850500","EGO FRUTAS DEL BOSQUE EVOLUCION 6 LATAS DE 255ML",27,30230.01,28455.05,26680.09,24905.13,35650.00],
-      ["4903204","EGO LIFE EVOLUCION CAJA",33,37498.32,35318.19,33138.05,30957.92,43800.00],
-      ["1260600","EGO HERBAL EVOLUCION BOTELLA 200 ML",5,3612.85,3402.80,3192.75,2982.70,4220.00],
-      ["1675700","ESTOP PLUS SUPREME CAJA C30 SOBRES 450G",102,86271.83,81256.03,76240.22,71224.42,100770.00],
-      ["1409621","FEM EVOLUCION CAJA",56,53935.95,50800.13,47664.32,44528.51,63000.00],
-      ["1502208","FIBER N PLUS EVOLUCION",70,59783.29,56307.51,52831.74,49355.97,69830.00],
-      ["2505711","FOCUS EVOLUCION CAJA C/30 SOBRES",64,45605.84,42954.34,40302.84,37651.25,53270.00],
-      ["1729752","HOMO PLUS CAJA CON 30 SACHETS 180 G",55,42249.82,39793.43,37337.05,34880.66,49350.00],
-      ["1850610","OMNIKOL EVOLUCION BOTELLA 200ML",5,3612.85,3402.80,3192.75,2982.70,4220.00],
-      ["5025516","OMNILIFE VKIDS, DOYPACK 400 G",71,61760.94,58170.18,54579.43,50988.68,72140.00],
-      ["6571959","OMNIOST CAJA 30 SOBRES 450 GRS",62,57874.12,54509.35,51144.57,47779.80,67600.00],
-      ["5827415","OMNIVIU SUPREME CAJA C/30 SACHETS 150 GR",59,58439.17,55041.54,51643.91,48246.29,68260.00],
-      ["6305929","ONE C MIX EVOLUCION CAJA 150 G",46,36659.32,34527.86,32396.61,30265.25,42820.00],
-      ["2603201","POWER MAKER EVOLUCION",110,58422.04,55025.61,51628.78,48232.15,68240.00],
-      ["7170943","SHAKE SUPREME COOKIES&CREAM C/12 SO",76,67676.77,63742.08,59807.38,55872.69,79050.00],
-      ["3000730","STARBIEN EVOLUCION CAJA C 30 SOBRES",53,38602.73,36358.30,34114.04,31869.70,45090.00],
-      ["3178516","SUPER MIX SUPREME VAINILLA, CAJA 30 SOBRES",76,72933.38,68693.07,64452.76,60212.44,85190.00],
-      ["3304732","TMGN COFFEE CAJA EVOLUCION",39,36197.17,34092.53,31988.05,29883.58,42280.00],
-      ["3505609","TEATINO MARACUYÁ EVOLUCION",93,81717.23,76966.23,72215.23,67464.23,95450.00],
-      ["3875700","UZO SUPREME, CAJA CON 30 SOBRES",166,103762.49,97729.78,91697.08,85664.38,121200.00]
-    ].map(([code,name,points,p25,p30,p35,p40,pvp]) => ({code,name,points,prices:{25:p25,30:p30,35:p35,40:p40},pvp}));
-
-    const CATALOGS = { EC:{name:'Ecuador',currency:'USD',locale:'en-US',products:PRODUCTS}, AR:{name:'Argentina',currency:'ARS',locale:'es-AR',products:ARGENTINA_PRODUCTS} };
-    let country = localStorage.getItem('hamilton_country') || 'EC';
+    const CATALOGS = { EC:{name:'Ecuador',currency:'USD',locale:'en-US',products:PRODUCTS} };
+    let country = 'EC';
     let email = localStorage.getItem('hamilton_affiliate_email') || '';
     let discount = Number(localStorage.getItem('hamilton_discount_' + country + '_' + email) || 25);
     let cart = {};
@@ -152,16 +94,48 @@
     function renderProducts(){const query=$('searchInput').value.toLowerCase().trim();const visible=catalog().products.filter(p=>(p.name+' '+p.code).toLowerCase().includes(query));$('resultCount').textContent=visible.length;$('discountBadge').textContent=discount+'% seleccionado';$('summaryDiscount').textContent=discount+'%';$('productRows').innerHTML=visible.map(p=>{const q=cart[p.code]||0;const gain=p.pvp-productCost(p);const loss=gain<0;return `<tr><td class="product-name">${p.name}<span class="product-code">Código ${p.code}</span></td><td class="points">${p.points}</td><td class="money">${money(productCost(p))}</td><td class="money">${money(p.pvp)}</td><td class="money ${loss?'negative':'positive'}">${money(gain)}${loss?' ⚠':''}</td><td><input class="qty-input" type="number" min="0" step="1" value="${q}" data-qty="${p.code}" aria-label="Cantidad de ${p.name}"></td><td><button class="add-btn" data-add="${p.code}">Agregar</button></td></tr>`}).join('');$('dataWarnings').classList.toggle('hidden',!catalog().products.some(p=>p.pvp<productCost(p)));$('dataWarnings').textContent='Hay productos cuyo PVP proporcionado es menor que su precio de afiliado. La app conserva los datos recibidos y muestra la diferencia negativa; conviene confirmar ese PVP antes de usarlo para tomar decisiones.'}
     function renderCart(){const t=totals();$('heroPoints').textContent=t.points.toLocaleString('es-ES');$('heroItems').textContent=t.items.toLocaleString('es-ES');$('heroCost').textContent=money(t.cost);$('heroProfit').textContent=money(t.publicValue-t.cost);$('cartBadge').textContent=t.items+' artículo'+(t.items===1?'':'s');$('summaryEmpty').classList.toggle('hidden',t.items>0);$('summaryContent').classList.toggle('hidden',t.items===0);$('totalPoints').textContent=t.points.toLocaleString('es-ES');$('totalCost').textContent=money(t.cost);$('totalPublic').textContent=money(t.publicValue);$('totalProfit').textContent=money(t.publicValue-t.cost);$('profitMetric').classList.toggle('loss',t.publicValue-t.cost<0);$('cartList').innerHTML=Object.entries(cart).filter(([,q])=>q>0).map(([code,q])=>{const p=getProduct(code);return `<div class="cart-row"><div><strong>${p.name}</strong><small>${q} × ${money(productCost(p))} · ${p.points*q} puntos</small></div><div class="cart-actions"><div class="qty-stepper"><button data-minus="${code}" aria-label="Restar">−</button><b>${q}</b><button data-plus="${code}" aria-label="Sumar">+</button></div><button class="btn btn-danger btn-small" data-remove="${code}" aria-label="Eliminar">×</button></div></div>`}).join('');saveCart()}
     function renderSaved(){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||'[]')||[]}catch{};$('savedLists').innerHTML=lists.length?lists.map((l,i)=>`<div class="saved-item"><span><strong>${l.name}</strong><br><small>${l.discount}% · ${l.points} pts · ${money(l.cost)}</small></span><span><button data-load="${i}">Cargar</button><button data-delete="${i}">×</button></span></div>`).join(''):'<span class="notice">No hay listas guardadas.</span>'}
-    function renderAll(){const c=catalog();$('countrySelect').value=country;$('countryNote').textContent='Catálogo de '+c.name+' en '+c.currency+'. Verifica vigencia, disponibilidad y condiciones oficiales antes de comprar o vender.';renderProducts();renderCart();renderSaved()}
+    function renderAll(){const c=catalog();$('countryNote').textContent='Catálogo de '+c.name+' en '+c.currency+'. Verifica vigencia, disponibilidad y condiciones oficiales antes de comprar o vender.';renderProducts();renderCart();renderSaved()}
     function saveList(){const t=totals();if(!t.items)return showToast('Agrega al menos un producto antes de guardar.');const name=prompt('Nombre para esta lista:', 'Mi pedido '+new Date().toLocaleDateString('es-ES'));if(!name)return;let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||'[]')||[]}catch{};lists.unshift({name:name.trim(),discount,cart:{...cart},points:t.points,cost:t.cost,createdAt:Date.now()});localStorage.setItem(listKey(),JSON.stringify(lists.slice(0,20)));renderSaved();showToast('Lista guardada en este navegador.')}
-    $('loginForm').addEventListener('submit',e=>{e.preventDefault();email=$('loginEmail').value.trim().toLowerCase();if(!email)return;localStorage.setItem('hamilton_affiliate_email',email);discount=Number(localStorage.getItem(discountKey())||25);loadCart();$('loginView').classList.add('hidden');$('appView').classList.remove('hidden');$('userEmail').textContent=email;$('discountSelect').value=discount;renderAll()});
+    const ACCESS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTYFmx38EtSgDw-4v3dN1z9xTsv2sfSz37B5xJqr8rAc_BlK3Aov4mL-Rz6OE5cNGqPA/exec';
+    function accessState(data){
+      const raw = data && (data.estado ?? data.status ?? data.state ?? data.access ?? data.autorizacion ?? data.authorization ?? data.resultado ?? data.result);
+      if (data && (data.activo === true || data.active === true || data.authorized === true)) return 'ACTIVO';
+      return String(raw ?? '').trim().toUpperCase();
+    }
+    async function verifyAffiliateAccess(candidate){
+      const url = ACCESS_SCRIPT_URL + '?action=verificar_acceso&email=' + encodeURIComponent(candidate) + '&callback=_hamiltonAccessCallback';
+      try {
+        const response = await fetch(url, {method:'GET', mode:'cors', cache:'no-store'});
+        if (!response.ok) throw new Error('HTTP '+response.status);
+        const data = await response.json();
+        return accessState(data);
+      } catch (error) {
+        throw new Error('No se pudo consultar Google Sheets. Verifica que Apps Script esté implementado como aplicación web y permita acceso a cualquier usuario.');
+      }
+    }
+    function accessMessage(state){
+      if (state === 'PENDIENTE') return 'Tu correo fue registrado, pero todavía está pendiente de autorización. Escríbele a Hamilton por WhatsApp para confirmar tu afiliación.';
+      if (state === 'APAGADO' || state === 'INACTIVO') return 'Este acceso está apagado temporalmente. Solicita a Hamilton que lo active cuando corresponda.';
+      return 'No encontramos este correo como afiliado activo. Usa el mismo correo registrado en tu afiliación o solicita autorización a Hamilton.';
+    }
+    $('loginForm').addEventListener('submit', async e=>{
+      e.preventDefault();
+      email=$('loginEmail').value.trim().toLowerCase();
+      if(!email)return;
+      const button=e.currentTarget.querySelector('button');
+      button.disabled=true; button.textContent='Verificando autorización…';
+      try {
+        const state=await verifyAffiliateAccess(email);
+        if(state !== 'ACTIVO') { showToast(accessMessage(state)); return; }
+        localStorage.setItem('hamilton_affiliate_email',email); discount=Number(localStorage.getItem(discountKey())||25); loadCart();
+        $('loginView').classList.add('hidden'); $('appView').classList.remove('hidden'); $('userEmail').textContent=email; $('discountSelect').value=discount; renderAll();
+      } catch(error) { showToast(error.message); }
+      finally { button.disabled=false; button.textContent='Entrar a mi calculadora'; }
+    });
     $('logoutBtn').addEventListener('click',()=>{$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');$('loginEmail').value=email});
-    $('countrySelect').addEventListener('change',e=>{saveCart();country=e.target.value;localStorage.setItem('hamilton_country',country);discount=Number(localStorage.getItem(discountKey())||25);cart={};loadCart();$('discountSelect').value=discount;$('searchInput').value='';renderAll();showToast('Catálogo cambiado a '+catalog().name+'.')});
     $('discountSelect').addEventListener('change',e=>{discount=Number(e.target.value);localStorage.setItem(discountKey(),discount);renderAll();showToast('Descuento actualizado al '+discount+'%.')});
     $('searchInput').addEventListener('input',renderProducts);$('clearSearch').addEventListener('click',()=>{$('searchInput').value='';renderProducts()});$('saveListBtn').addEventListener('click',saveList);$('clearCartBtn').addEventListener('click',()=>{cart={};renderAll();showToast('Lista vaciada.')});
     document.addEventListener('input',e=>{if(e.target.matches('[data-qty]')){const q=Math.max(0,parseInt(e.target.value||0,10));if(q)cart[e.target.dataset.qty]=q;else delete cart[e.target.dataset.qty];renderCart()}});
     document.addEventListener('click',e=>{const add=e.target.closest('[data-add]');if(add){const code=add.dataset.add;cart[code]=(cart[code]||0)+1;renderAll();showToast('Producto agregado.');return}const plus=e.target.closest('[data-plus]');if(plus){cart[plus.dataset.plus]=(cart[plus.dataset.plus]||0)+1;renderAll();return}const minus=e.target.closest('[data-minus]');if(minus){cart[minus.dataset.minus]=Math.max(0,(cart[minus.dataset.minus]||0)-1);if(!cart[minus.dataset.minus])delete cart[minus.dataset.minus];renderAll();return}const rem=e.target.closest('[data-remove]');if(rem){delete cart[rem.dataset.remove];renderAll();return}const load=e.target.closest('[data-load]');if(load){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||'[]')||[]}catch{};const l=lists[Number(load.dataset.load)];if(l){discount=l.discount;cart={...l.cart};$('discountSelect').value=discount;renderAll();showToast('Lista cargada.')}return}const del=e.target.closest('[data-delete]');if(del){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||'[]')||[]}catch{};lists.splice(Number(del.dataset.delete),1);localStorage.setItem(listKey(),JSON.stringify(lists));renderSaved();showToast('Lista eliminada.')}});
-    if(email){$('loginEmail').value=email}
-  </script>
-</body>
-</html>
+    if(email){$('loginEmail').value=email; email=''; localStorage.removeItem('hamilton_affiliate_email')}
+  </script></body></html>
