@@ -17,15 +17,101 @@
     .notice{font-size:.76rem;color:var(--muted);margin-top:16px}.footer{max-width:1360px;margin:auto;padding:0 22px 35px;color:var(--muted);font-size:.74rem}.login-screen{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{max-width:520px;width:100%;padding:34px}.login-card h1{font-family:Georgia,serif;font-size:2.2rem;line-height:1.05;margin:16px 0 10px}.login-card p{color:var(--muted);font-size:.9rem}.login-brand{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:900}.brand-logo{width:42px;height:42px;object-fit:contain;border-radius:12px;display:block}.login-form{display:grid;gap:12px;margin-top:22px}.local-note{background:#edf8f0;border:1px solid #c8e4d1;color:#245e43;padding:12px;border-radius:12px;font-size:.78rem;margin-top:16px}.toast{position:fixed;right:20px;bottom:20px;z-index:40;background:#17352a;color:white;padding:12px 15px;border-radius:12px;box-shadow:var(--shadow);font-size:.82rem;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateY(0)}
     @media(max-width:980px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.summary-card{position:static}.hero-stat{min-height:220px}}
     @media(max-width:620px){.topbar-inner{padding:11px 14px}.shell{padding:20px 14px 45px}.hero-copy,.panel,.summary-card,.login-card{padding:20px}.userbar{gap:6px}.user-email{max-width:130px}.userbar .btn{padding:8px}.hero h2{font-size:2.2rem}.controls{display:grid;grid-template-columns:1fr}.field,.search-field{min-width:0}.stat-grid{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr 1fr}.summary-actions .btn{flex:1}.brand small{display:none}}
-  </style></head><body>
+  
+/* Ajustes responsive: la tabla nunca invade ni corta el panel de resumen. */
+.product-table-wrap{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.product-table{min-width:0;width:100%;table-layout:fixed}
+.product-table th,.product-table td{overflow:hidden}
+.product-table th:nth-child(1),.product-table td:nth-child(1){width:34%}
+.product-table th:nth-child(2),.product-table td:nth-child(2){width:9%}
+.product-table th:nth-child(3),.product-table td:nth-child(3){width:13%}
+.product-table th:nth-child(4),.product-table td:nth-child(4){width:13%}
+.product-table th:nth-child(5),.product-table td:nth-child(5){width:14%}
+.product-table th:nth-child(6),.product-table td:nth-child(6){width:9%}
+.product-table th:nth-child(7),.product-table td:nth-child(7){width:8%}
+.product-name{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+.add-btn{white-space:nowrap;padding:8px 7px;font-size:.7rem}
+.qty-input{width:100%;max-width:58px;padding:7px 3px}
+.money{white-space:normal}
+@media(max-width:980px){
+  .workspace{grid-template-columns:minmax(0,1fr)}
+  .summary-card{position:static}
+  .product-table{min-width:680px;table-layout:auto}
+  .product-table th,.product-table td{overflow:visible}
+  .product-name{min-width:220px}
+}
+@media(max-width:620px){
+  .panel{padding:14px}
+  .product-table-wrap{margin-right:0}
+  .product-table{min-width:680px}
+  .product-table th,.product-table td{padding:9px 8px}
+  .product-name{min-width:210px;max-width:240px}
+  .product-table th:nth-child(1),.product-table td:nth-child(1){width:auto}
+  .add-btn{font-size:.72rem;padding:8px 9px}
+}
+
+/* Estadísticas privadas de planificación */
+.stats-section{margin:0 0 22px;padding:22px;background:linear-gradient(135deg,#164b35,#287d58);color:#fff;border-radius:var(--radius);box-shadow:var(--shadow)}
+.stats-section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:15px}.stats-section h3{margin:0;font-size:1.1rem}.stats-section p{margin:4px 0 0;font-size:.78rem;opacity:.82}.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.stats-item{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.16);border-radius:13px;padding:13px}.stats-item strong{display:block;font-size:1.15rem;color:#fff}.stats-item span{display:block;font-size:.68rem;opacity:.82;margin-top:3px}.stats-item.profit{background:rgba(255,255,255,.18)}.stats-note{font-size:.7rem;opacity:.72;margin:13px 0 0;line-height:1.4}
+@media(max-width:980px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.stats-section{padding:17px}.stats-grid{grid-template-columns:repeat(2,1fr)}.stats-item strong{font-size:1rem}}
+
+/* Vista compacta sin recorte: todas las columnas y el botón caben en PC. */
+.workspace{grid-template-columns:minmax(0,1fr) 340px;gap:18px}
+.product-table-wrap{overflow:hidden}
+.product-table{width:100%;min-width:0;table-layout:fixed}
+.product-table th,.product-table td{padding:10px 7px;font-size:.76rem}
+.product-table th{font-size:.63rem;letter-spacing:.025em}
+.product-table th:nth-child(1),.product-table td:nth-child(1){width:32%}
+.product-table th:nth-child(2),.product-table td:nth-child(2){width:8%}
+.product-table th:nth-child(3),.product-table td:nth-child(3){width:12%}
+.product-table th:nth-child(4),.product-table td:nth-child(4){width:12%}
+.product-table th:nth-child(5),.product-table td:nth-child(5){width:14%}
+.product-table th:nth-child(6),.product-table td:nth-child(6){width:9%}
+.product-table th:nth-child(7),.product-table td:nth-child(7){width:13%}
+.product-name{min-width:0;font-size:.76rem;line-height:1.25;overflow-wrap:anywhere}
+.product-code{font-size:.61rem}
+.qty-input{width:100%;max-width:48px;font-size:.75rem;padding:7px 2px}
+.add-btn{display:block;width:100%;min-width:0;white-space:nowrap;padding:8px 2px;font-size:.64rem;letter-spacing:-.02em}
+.money{font-size:.72rem}
+@media(max-width:1080px) and (min-width:621px){
+  .workspace{grid-template-columns:minmax(0,1fr) 300px;gap:12px}
+  .product-table th,.product-table td{padding:8px 4px;font-size:.69rem}
+  .product-table th{font-size:.56rem}
+  .add-btn{font-size:.58rem}
+}
+@media(max-width:620px){
+  .workspace{display:block}
+  .product-table-wrap{overflow:visible;border:0}
+  .product-table,.product-table tbody{display:block;width:100%}
+  .product-table thead{display:none}
+  .product-table tr{display:grid;grid-template-columns:minmax(0,1fr) 54px 70px;gap:8px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+  .product-table td{display:block;width:auto!important;padding:0;border:0;overflow:visible}
+  .product-table td:nth-child(1){grid-column:1 / 4;grid-row:1}
+  .product-table td:nth-child(2){grid-column:1;grid-row:2;font-size:.78rem}
+  .product-table td:nth-child(3){grid-column:1;grid-row:3;font-size:.75rem}
+  .product-table td:nth-child(4){grid-column:2;grid-row:3;font-size:.75rem}
+  .product-table td:nth-child(5){grid-column:3;grid-row:3;font-size:.75rem}
+  .product-table td:nth-child(6){grid-column:2;grid-row:2}
+  .product-table td:nth-child(7){grid-column:3;grid-row:2}
+  .product-table td:nth-child(2)::before{content:'Puntos: ';color:var(--muted);font-weight:600}
+  .product-table td:nth-child(3)::before{content:'Costo: ';color:var(--muted);font-weight:600}
+  .product-table td:nth-child(4)::before{content:'PVP: ';color:var(--muted);font-weight:600}
+  .product-table td:nth-child(5)::before{content:'Gan.: ';color:var(--muted);font-weight:600}
+  .qty-input{max-width:54px}
+  .add-btn{font-size:.66rem;padding:8px 2px}
+}
+</style></head><body>
   <div id="loginView" class="login-screen">
     <section class="login-card">
       <div class="login-brand"><img class="brand-logo" src="logo-hamilton.png" alt="Logo Hamilton Networker"><span>Hamilton Networker</span></div>
       <h1>Calculadora de afiliados</h1>
-      <p>Solicita acceso con tu nombre y correo electrónico. Después de que Hamilton autorice tu solicitud, podrás consultar productos, puntos, precios y ganancia estimada.</p>
+      <p>Ingresa tus datos de afiliado para solicitar autorización y consultar productos, puntos, precios según tu descuento y ganancia estimada.</p>
       <form id="loginForm" class="login-form">
-        <div class="field"><label for="loginName">Nombre completo</label><input id="loginName" type="text" autocomplete="name" placeholder="Tu nombre completo" required></div><div class="field"><label for="loginEmail">Correo electrónico</label><input id="loginEmail" type="email" autocomplete="email" placeholder="afiliado@correo.com" required></div>
-        <button class="btn btn-primary" type="submit">Solicitar acceso</button>
+        <div class="field"><label for="loginName">Nombre completo</label><input id="loginName" type="text" autocomplete="name" placeholder="Tu nombre y apellido" required></div>
+        <div class="field"><label for="loginEmail">Correo electrónico</label><input id="loginEmail" type="email" autocomplete="email" placeholder="afiliado@correo.com" required></div>
+        <div class="field"><label for="loginAffiliateCode">Código de afiliado</label><input id="loginAffiliateCode" type="text" autocomplete="off" placeholder="Ej. 123456" required></div>
+        <button class="btn btn-primary" type="submit">Solicitar acceso a mi calculadora</button>
       </form>
       <div class="local-note"><strong>Tu herramienta de apoyo:</strong> la preparé para facilitarte algunos cálculos mientras planificas tus compras. Úsala para comparar descuentos, organizar tus productos, revisar tus puntos y visualizar tu ganancia estimada. Sigue aprendiendo, toma decisiones informadas y avanza paso a paso hacia tus objetivos.</div>
     </section>
@@ -35,11 +121,23 @@
     <header class="topbar"><div class="topbar-inner"><div class="brand"><img class="brand-logo" src="logo-hamilton.png" alt="Logo Hamilton Networker"><div><h1>Calculadora de Afiliados</h1><small>Hamilton Networker · catálogo real de Ecuador</small></div></div><div class="userbar"><span class="user-email" id="userEmail"></span><button class="btn btn-ghost btn-small" id="logoutBtn">Salir</button></div></div></header>
     <main class="shell">
       <section class="hero">
-        <div class="hero-card hero-copy"><span class="eyebrow"><i></i> Herramienta para planificar</span><h2>Arma tu pedido y mira tus números <span>antes de comprar.</span></h2><p>Elige tu nivel de descuento, agrega productos y revisa en tiempo real los puntos, cuánto inviertes, cuánto venderías al precio público y tu ganancia estimada.</p></div>
+        <div class="hero-card hero-copy"><span class="eyebrow"><i></i> Herramienta para planificar</span><h2>Arma tu pedido y mira tus números <span>antes de comprar.</span></h2><p>Elige tu nivel de descuento y agrega productos y revisa en tiempo real los puntos, cuánto inviertes, cuánto venderías al precio público y tu ganancia estimada.</p></div>
         <div class="hero-stat"><h3>Tu resumen de hoy</h3><div class="stat-grid"><div class="stat"><strong id="heroPoints">0</strong><span>puntos seleccionados</span></div><div class="stat"><strong id="heroItems">0</strong><span>unidades</span></div><div class="stat"><strong id="heroCost">$0.00</strong><span>inversión</span></div><div class="stat"><strong id="heroProfit">$0.00</strong><span>ganancia estimada</span></div></div></div>
       </section>
 
-      <section class="panel" style="margin-bottom:22px"><div class="controls"><div class="field"><label for="countryDisplay">País y catálogo</label><input id="countryDisplay" value="Ecuador · USD" readonly aria-label="País y catálogo"></div><div class="field"><label for="discountSelect">Mi descuento</label><select id="discountSelect"><option value="25">25% · afiliación normal</option><option value="30">30% · Kit Emprendedor</option><option value="35">35% · nivel avanzado</option><option value="40">40% · nivel avanzado</option></select></div><div class="field search-field"><label for="searchInput">Buscar producto o código</label><input id="searchInput" type="search" placeholder="Ej. Power Maker, Biocros, 2603201..."></div><button class="btn btn-secondary" id="clearSearch">Limpiar búsqueda</button></div><p class="notice" id="countryNote">Catálogo real de Ecuador en dólares estadounidenses (USD). Verifica vigencia, país, disponibilidad y condiciones oficiales antes de comprar o vender.</p></section>
+      <section class="panel" style="margin-bottom:22px"><div class="controls"><div class="field"><label for="countrySelect">País y catálogo</label><select id="countrySelect"><option value="EC">Ecuador · USD</option></select></div><div class="field"><label for="discountSelect">Mi descuento</label><select id="discountSelect"><option value="25">25% · afiliación normal</option><option value="30">30% · Kit Emprendedor</option><option value="35">35% · nivel avanzado</option><option value="40">40% · nivel avanzado</option></select></div><div class="field"><label for="brandFilter">Catálogo</label><select id="brandFilter"><option value="OMNILIFE">Omnilife Ecuador</option></select></div><div class="field search-field"><label for="searchInput">Buscar producto o código</label><input id="searchInput" type="search" placeholder="Ej. Power Maker, Biocros, 2603201..."></div><button class="btn btn-secondary" id="clearSearch">Limpiar búsqueda</button></div><p class="notice" id="countryNote">Catálogo de Ecuador en dólares estadounidenses (USD). Verifica vigencia, país, disponibilidad y condiciones oficiales antes de comprar o vender.</p></section>
+
+      <section class="stats-section" aria-labelledby="stats-title">
+        <div class="stats-section-head"><div><h3 id="stats-title">Estadísticas de mi planificación</h3><p>Una lectura rápida de tu pedido y su ganancia estimada.</p></div><span class="badge" style="background:rgba(255,255,255,.16);color:#fff;border-color:rgba(255,255,255,.2)">En tiempo real</span></div>
+        <div class="stats-grid">
+          <div class="stats-item"><strong id="statsPoints">0</strong><span>Puntos acumulados</span></div>
+          <div class="stats-item"><strong id="statsCost">$0.00</strong><span>Inversión</span></div>
+          <div class="stats-item"><strong id="statsPublic">$0.00</strong><span>Venta estimada</span></div>
+          <div class="stats-item profit"><strong id="statsProfit">$0.00</strong><span>Ganancia estimada</span></div>
+          <div class="stats-item"><strong id="statsMargin">0%</strong><span>Margen estimado</span></div>
+        </div>
+        <p class="stats-note">Estimación matemática basada en el catálogo cargado, tu descuento y el precio público indicado. No representa una garantía de resultados.</p>
+      </section>
 
       <section class="workspace">
         <div class="panel"><div class="panel-head"><div><h3>Catálogo de productos</h3><p class="panel-sub"><span id="resultCount">0</span> productos disponibles · agrega cantidades para construir tu lista.</p></div><span class="badge" id="discountBadge">25% seleccionado</span></div><div class="product-table-wrap"><table class="product-table"><thead><tr><th>Producto</th><th>Puntos</th><th>Tu costo</th><th>PVP</th><th>Ganancia/u.</th><th>Cantidad</th><th></th></tr></thead><tbody id="productRows"></tbody></table></div><div id="dataWarnings" class="warning hidden"></div></div>
@@ -50,34 +148,49 @@
   </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div><script>
     const PRODUCTS = [
-      ['4903204','EGO LIFE EVOLUCION CAJA 30 SOBRES',38,27.72,26.16,24.60,23.05,35.50],
-      ['5025516','OMNILIFE VKIDS DOYPACK 400 G',71,41.77,39.42,37.08,34.73,53.50],
-      ['5105932','CAFEZZINO EVOLUCIÓN',52,35.91,33.90,31.88,29.86,46.00],
-      ['5177632','CAFEZZINO SIN ENDULZAR BOTE',58,38.65,36.48,34.30,32.13,49.50],
-      ['6305929','ONE C MIX EVOLUCION CAJA 150 G',46,28.49,26.89,25.29,23.69,36.50],
-      ['6571959','OMNIOST CAJA C/30 SOBRES 450 GRS',57,38.26,36.11,33.96,31.81,49.00],
-      ['6724761','OMNILIFE PROBIOTIC EVOLUCION CAJA 30 SOBRES',66,39.43,37.21,35.00,32.78,50.50],
-      ['8453000','FLU-Y BOTE 60 CAPSULAS',44,20.30,19.16,18.02,16.88,26.00],
-      ['3505605','TEATINO LIMON EVOLUCION CAJA 30 SOBRES',63,30.46,28.75,27.04,25.33,39.00],
-      ['3505609','TEATINO MARACUYÁ EVOLUCIÓN 30 SOBRES',95,53.47,50.47,47.46,44.46,68.50],
-      ['3659152','OML IQU LATA 12 OZ',42,29.27,27.63,25.98,24.34,37.50],
-      ['3659295','OML IQU LATA INDIVIDUAL 12 OZ',7,4.92,4.65,4.37,4.09,6.30],
-      ['3705934','UNDU EVOLUCION',107,51.52,48.63,45.73,42.84,66.00],
-      ['3875700','UZO SUPREME, CAJA CON 30 SACHETS',166,95.25,89.90,84.55,79.19,122.00],
-      ['3905934','AQTUA EVOLUCION, CAJA CON 30 SACHETS',118,58.55,55.26,51.98,48.69,75.00],
-      ['3924734','AQTUA SUPREME, CAJA CON 30 SACHETS',112,57.78,54.53,51.28,48.04,74.00],
-      ['4160400','AGUA BLU SUPREME, 600 ML',1,1.25,1.18,1.11,1.04,1.60],
-      ['4250204','ALOE BETA PIÑA EVOLUCION 960 ML',26,14.43,13.62,12.81,12.00,18.50],
-      ['4250604','ALOE BETA PIÑA EVOLUCION BOTELLA 200 ML',5,3.20,3.02,2.84,2.66,4.10],
-      ['4404710','DOLCE VITA EVOLUCION CAJA 30 SOBRES',70,42.55,40.16,37.77,35.38,54.50],
-      ['4650609','EGO 10 EVOLUCION BOTELLA 200 ML',5,3.20,3.02,2.84,2.66,4.10],
-      ['4850500','EGO FRUTAS DEL BOSQUE EVOL LATA 355 ML',27,19.91,18.79,17.67,16.55,25.50]
+      ["1260600","EGO PLANT EVOLUCION BOTELLA 200 ML",5,3.2,3.02,2.84,2.66,4.1],
+      ["1409621","FEM EVOLUCION CAJA",56,30.45,28.74,27.03,25.32,39.0],
+      ["1502208","FIBER´N PLUS EVOLUCIÓN CAJA 30 SOBRES 450G",70,44.89,42.37,39.85,37.32,57.5],
+      ["1675700","STOP PLUS CAJA 30 SACHETS 450G",102,58.17,54.9,51.63,48.36,74.5],
+      ["1729752","HOMO PLUS CAJA CON 30 SACHETS 180G",55,29.67,28.0,26.34,24.67,38.0],
+      ["1850610","KOLINA EVOLUCION BOTELLA 200ML",5,3.2,3.02,2.84,2.66,4.1],
+      ["2075722","BIOCROS SUPREME CAJA 30 SOBRES 240G",54,29.67,28.0,26.34,24.67,38.0],
+      ["2350430","OMNIPLUS FRUTAS EVOLUCION CAJA 30 SOBRES",87,48.01,45.32,42.62,39.92,61.5],
+      ["2505711","OPTIMUS EVOLUCION CAJA",64,34.74,32.79,30.83,28.88,44.5],
+      ["2603201","POWER MAKER EVOLUCION CAJA CON 30 SOBRES",110,53.87,50.84,47.81,44.79,69.0],
+      ["2350401","OMNIPLUS NARANJA EVOLUCION CAJA CON 30 SOBRES",87,48.01,45.32,42.62,39.92,61.5],
+      ["3000730","STAR BIEN EVOLUCION CAJA 30 SOBRES",53,30.45,28.74,27.03,25.32,39.0],
+      ["3178516","SUPER MIX SUPREME VAINILLA, CAJA 30 SOBR",76,44.5,42.0,39.5,37.0,57.0],
+      ["3304732","TMGN COFFE CAJA EVOLUCION",39,28.88,27.26,25.64,24.02,37.0],
+      ["3505605","TEATINO LIMON EVOLUCION CAJA 30 SOBRES",63,30.46,28.75,27.04,25.33,39.0],
+      ["3505609","TEATINO MARACUYÁ EVOLUCIÓN 30 SOBRES",95,53.47,50.47,47.46,44.46,68.5],
+      ["3659152","OML IQU LATA 12 OZ",42,29.27,27.63,25.98,24.34,37.5],
+      ["3659295","OML IQU LATA INDIVIDUAL 12 OZ",7,4.92,4.65,4.37,4.09,6.3],
+      ["3705934","UNDU EVOLUCION",107,51.52,48.63,45.73,42.84,66.0],
+      ["3875700","UZO SUPREME, CAJA CON 30 SACHETS",166,95.25,89.9,84.55,79.19,122.0],
+      ["3905934","AQTUA EVOLUCION, CAJA CON 30 SACHETS",118,58.55,55.26,51.98,48.69,75.0],
+      ["3924734","AQTUA SUPREME, CAJA CON 30 SACHETS",112,57.78,54.53,51.28,48.04,74.0],
+      ["4160400","AGUA BLU SUPREME, 600 ML",1,1.25,1.18,1.11,1.04,1.6],
+      ["4250204","ALOE BETA PIÑA EVOLUCION 960 ML",26,14.43,13.62,12.81,12.0,18.5],
+      ["4250604","ALOE BETA PIÑA EVOLUCION BOTELLA 200 ML",5,3.2,3.02,2.84,2.66,4.1],
+      ["4404710","DOLCE VITA EVOLUCION CAJA 30 SOBRES",70,42.55,40.16,37.77,35.38,54.5],
+      ["4650609","EGO 10 EVOLUCION BOTELLA 200 ML",5,3.2,3.02,2.84,2.66,4.1],
+      ["4850500","EGO FRUTAS DEL BOSQUE EVOL LATA 355 ML",27,19.91,18.79,17.67,16.55,25.5],
+      ["4903204","EGO LIFE EVOLUCION CAJA 30 SOBRES",38,27.72,26.16,24.6,23.05,35.5],
+      ["5025516","OMNILIFE VKIDS DOYPACK 400 G",71,41.77,39.42,37.08,34.73,53.5],
+      ["5105932","CAFEZZINO EVOLUCIÓN",52,35.91,33.9,31.88,29.86,46.0],
+      ["5177632","CAFEZZINO SIN ENDULZAR BOTE",58,38.65,36.48,34.3,32.13,49.5],
+      ["6305929","ONE C MIX EVOLUCION CAJA 150 G",46,28.49,26.89,25.29,23.69,36.5],
+      ["6571959","OMNIOST CAJA C/30 SOBRES 450 GRS",57,38.26,36.11,33.96,31.81,49.0],
+      ["6724761","OMNILIFE PROBIOTIC EVOLUCION CAJA 30 SOBRES",66,39.43,37.21,35.0,32.78,50.5],
+      ["8453000","FLU-Y BOTE 60 CAPSULAS",44,20.3,19.16,18.02,16.88,26.0]
     ].map(([code,name,points,p25,p30,p35,p40,pvp]) => ({code,name,points,prices:{25:p25,30:p30,35:p35,40:p40},pvp}));
 
     const CATALOGS = { EC:{name:'Ecuador',currency:'USD',locale:'en-US',products:PRODUCTS} };
-    let country = 'EC';
+    let country = 'EC'; localStorage.setItem('hamilton_country','EC');
     let email = localStorage.getItem('hamilton_affiliate_email') || '';
     let discount = Number(localStorage.getItem('hamilton_discount_' + country + '_' + email) || 25);
+    let brand = 'OMNILIFE';
     let cart = {};
     const $ = id => document.getElementById(id);
     const catalog = () => CATALOGS[country] || CATALOGS.EC;
@@ -91,10 +204,10 @@
     function getProduct(code){return catalog().products.find(p=>p.code===code)}
     function productCost(p){return p.prices[discount]}
     function totals(){return Object.entries(cart).reduce((a,[code,qty])=>{const p=getProduct(code);if(!p)return a;const q=Number(qty)||0;a.items+=q;a.points+=p.points*q;a.cost+=productCost(p)*q;a.publicValue+=p.pvp*q;return a},{items:0,points:0,cost:0,publicValue:0})}
-    function renderProducts(){const query=$('searchInput').value.toLowerCase().trim();const visible=catalog().products.filter(p=>(p.name+' '+p.code).toLowerCase().includes(query));$('resultCount').textContent=visible.length;$('discountBadge').textContent=discount+'% seleccionado';$('summaryDiscount').textContent=discount+'%';$('productRows').innerHTML=visible.map(p=>{const q=cart[p.code]||0;const gain=p.pvp-productCost(p);const loss=gain<0;return `<tr><td class="product-name">${p.name}<span class="product-code">Código ${p.code}</span></td><td class="points">${p.points}</td><td class="money">${money(productCost(p))}</td><td class="money">${money(p.pvp)}</td><td class="money ${loss?'negative':'positive'}">${money(gain)}${loss?' ⚠':''}</td><td><input class="qty-input" type="number" min="0" step="1" value="${q}" data-qty="${p.code}" aria-label="Cantidad de ${p.name}"></td><td><button class="add-btn" data-add="${p.code}">Agregar</button></td></tr>`}).join('');$('dataWarnings').classList.toggle('hidden',!catalog().products.some(p=>p.pvp<productCost(p)));$('dataWarnings').textContent='Hay productos cuyo PVP proporcionado es menor que su precio de afiliado. La app conserva los datos recibidos y muestra la diferencia negativa; conviene confirmar ese PVP antes de usarlo para tomar decisiones.'}
-    function renderCart(){const t=totals();$('heroPoints').textContent=t.points.toLocaleString('es-ES');$('heroItems').textContent=t.items.toLocaleString('es-ES');$('heroCost').textContent=money(t.cost);$('heroProfit').textContent=money(t.publicValue-t.cost);$('cartBadge').textContent=t.items+' artículo'+(t.items===1?'':'s');$('summaryEmpty').classList.toggle('hidden',t.items>0);$('summaryContent').classList.toggle('hidden',t.items===0);$('totalPoints').textContent=t.points.toLocaleString('es-ES');$('totalCost').textContent=money(t.cost);$('totalPublic').textContent=money(t.publicValue);$('totalProfit').textContent=money(t.publicValue-t.cost);$('profitMetric').classList.toggle('loss',t.publicValue-t.cost<0);$('cartList').innerHTML=Object.entries(cart).filter(([,q])=>q>0).map(([code,q])=>{const p=getProduct(code);return `<div class="cart-row"><div><strong>${p.name}</strong><small>${q} × ${money(productCost(p))} · ${p.points*q} puntos</small></div><div class="cart-actions"><div class="qty-stepper"><button data-minus="${code}" aria-label="Restar">−</button><b>${q}</b><button data-plus="${code}" aria-label="Sumar">+</button></div><button class="btn btn-danger btn-small" data-remove="${code}" aria-label="Eliminar">×</button></div></div>`}).join('');saveCart()}
+    function renderProducts(){const query=$('searchInput').value.toLowerCase().trim();const visible=catalog().products.filter(p=>{const isSeytu=String(p.name).startsWith('SEYTÚ ·');const brandOk=brand==='ALL'||(brand==='SEYTU'?isSeytu:!isSeytu);return brandOk&&(p.name+' '+p.code).toLowerCase().includes(query)});$('resultCount').textContent=visible.length;$('discountBadge').textContent=discount+'% seleccionado';$('summaryDiscount').textContent=discount+'%';$('productRows').innerHTML=visible.map(p=>{const q=cart[p.code]||0;const gain=p.pvp-productCost(p);const loss=gain<0;return `<tr><td class="product-name">${p.name}<span class="product-code">Código ${p.code}</span></td><td class="points">${p.points}</td><td class="money">${money(productCost(p))}</td><td class="money">${money(p.pvp)}</td><td class="money ${loss?'negative':'positive'}">${money(gain)}${loss?' ⚠':''}</td><td><input class="qty-input" type="number" min="0" step="1" value="${q}" data-qty="${p.code}" aria-label="Cantidad de ${p.name}"></td><td><button class="add-btn" data-add="${p.code}">Agregar</button></td></tr>`}).join('');$('dataWarnings').classList.toggle('hidden',!catalog().products.some(p=>p.pvp<productCost(p)));$('dataWarnings').textContent='Hay productos cuyo PVP proporcionado es menor que su precio de afiliado. La app conserva los datos recibidos y muestra la diferencia negativa; conviene confirmar ese PVP antes de usarlo para tomar decisiones.'}
+    function renderCart(){const t=totals();$('heroPoints').textContent=t.points.toLocaleString('es-ES');$('heroItems').textContent=t.items.toLocaleString('es-ES');$('heroCost').textContent=money(t.cost);$('heroProfit').textContent=money(t.publicValue-t.cost);$('cartBadge').textContent=t.items+' artículo'+(t.items===1?'':'s');$('summaryEmpty').classList.toggle('hidden',t.items>0);$('summaryContent').classList.toggle('hidden',t.items===0);$('totalPoints').textContent=t.points.toLocaleString('es-ES');$('totalCost').textContent=money(t.cost);$('totalPublic').textContent=money(t.publicValue);$('totalProfit').textContent=money(t.publicValue-t.cost);$('statsPoints').textContent=t.points.toLocaleString('es-ES');$('statsCost').textContent=money(t.cost);$('statsPublic').textContent=money(t.publicValue);$('statsProfit').textContent=money(t.publicValue-t.cost);$('statsMargin').textContent=(t.cost>0?((t.publicValue-t.cost)/t.cost*100):0).toFixed(1)+'%';$('profitMetric').classList.toggle('loss',t.publicValue-t.cost<0);$('cartList').innerHTML=Object.entries(cart).filter(([,q])=>q>0).map(([code,q])=>{const p=getProduct(code);return `<div class="cart-row"><div><strong>${p.name}</strong><small>${q} × ${money(productCost(p))} · ${p.points*q} puntos</small></div><div class="cart-actions"><div class="qty-stepper"><button data-minus="${code}" aria-label="Restar">−</button><b>${q}</b><button data-plus="${code}" aria-label="Sumar">+</button></div><button class="btn btn-danger btn-small" data-remove="${code}" aria-label="Eliminar">×</button></div></div>`}).join('');saveCart()}
     function renderSaved(){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||'[]')||[]}catch{};$('savedLists').innerHTML=lists.length?lists.map((l,i)=>`<div class="saved-item"><span><strong>${l.name}</strong><br><small>${l.discount}% · ${l.points} pts · ${money(l.cost)}</small></span><span><button data-load="${i}">Cargar</button><button data-delete="${i}">×</button></span></div>`).join(''):'<span class="notice">No hay listas guardadas.</span>'}
-    function renderAll(){const c=catalog();$('countryNote').textContent='Catálogo de '+c.name+' en '+c.currency+'. Verifica vigencia, disponibilidad y condiciones oficiales antes de comprar o vender.';renderProducts();renderCart();renderSaved()}
+    function renderAll(){const c=catalog();$('countrySelect').value=country;$('brandFilter').value=brand;$('countryNote').textContent='Catálogo de '+c.name+' en '+c.currency+'. Verifica vigencia, disponibilidad y condiciones oficiales antes de comprar o vender.';renderProducts();renderCart();renderSaved()}
     function saveList(){const t=totals();if(!t.items)return showToast('Agrega al menos un producto antes de guardar.');const name=prompt('Nombre para esta lista:', 'Mi pedido '+new Date().toLocaleDateString('es-ES'));if(!name)return;let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||'[]')||[]}catch{};lists.unshift({name:name.trim(),discount,cart:{...cart},points:t.points,cost:t.cost,createdAt:Date.now()});localStorage.setItem(listKey(),JSON.stringify(lists.slice(0,20)));renderSaved();showToast('Lista guardada en este navegador.')}
     const ACCESS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTYFmx38EtSgDw-4v3dN1z9xTsv2sfSz37B5xJqr8rAc_BlK3Aov4mL-Rz6OE5cNGqPA/exec';
     function accessState(data){
@@ -102,23 +215,37 @@
       if (data && (data.activo === true || data.active === true || data.authorized === true)) return 'ACTIVO';
       return String(raw ?? '').trim().toUpperCase();
     }
-    async function registerAffiliateRequest(name, candidate){
+    async function registerAffiliateRequest(candidate){
+      const payload = {
+        email: candidate,
+        name: $('loginName').value.trim(),
+        country: 'Ecuador',
+        affiliateCode: $('loginAffiliateCode').value.trim()
+      };
       const response = await fetch(ACCESS_SCRIPT_URL, {
-        method:'POST',
-        body:new URLSearchParams({name, email:candidate, country:'Ecuador'})
+        method: 'POST',
+        mode: 'cors',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'},
+        body: new URLSearchParams(payload).toString()
       });
-      if (!response.ok) throw new Error('HTTP '+response.status);
+      if (!response.ok) throw new Error('No se pudo registrar la solicitud en Google Sheets.');
       const data = await response.json();
-      if (data && data.ok === false) throw new Error(data.error || 'No se pudo registrar la solicitud.');
+      if (data && data.ok === false) throw new Error(data.error || 'Google Sheets rechazó la solicitud.');
       return data;
     }
+
     async function verifyAffiliateAccess(candidate){
       const url = ACCESS_SCRIPT_URL + '?email=' + encodeURIComponent(candidate);
-      const response = await fetch(url, {method:'GET', mode:'cors', cache:'no-store'});
-      if (!response.ok) throw new Error('HTTP '+response.status);
-      const data = await response.json();
-      if (data && data.ok === false) throw new Error(data.error || 'No se pudo consultar el acceso.');
-      return accessState(data);
+      try {
+        const response = await fetch(url, {method:'GET', mode:'cors', cache:'no-store'});
+        if (!response.ok) throw new Error('HTTP '+response.status);
+        const data = await response.json();
+        if (data && data.ok === false) throw new Error(data.error || 'No se pudo consultar el acceso.');
+        return accessState(data);
+      } catch (error) {
+        if (error.message && error.message !== 'Failed to fetch') throw error;
+        throw new Error('No se pudo consultar Google Sheets. Verifica que Apps Script esté implementado como aplicación web y permita acceso a cualquier usuario.');
+      }
     }
     function accessMessage(state){
       if (state === 'PENDIENTE') return 'Tu correo fue registrado, pero todavía está pendiente de autorización. Escríbele a Hamilton por WhatsApp para confirmar tu afiliación.';
@@ -129,24 +256,28 @@
       e.preventDefault();
       const name=$('loginName').value.trim();
       email=$('loginEmail').value.trim().toLowerCase();
-      if(!name || !email)return;
+      const affiliateCode=$('loginAffiliateCode').value.trim();
+      if(!name || !email || !affiliateCode){ showToast('Completa tu nombre, correo y código de afiliado.'); return; }
       const button=e.currentTarget.querySelector('button');
       button.disabled=true; button.textContent='Registrando y verificando…';
       try {
-        await registerAffiliateRequest(name,email);
+        await registerAffiliateRequest(email);
         const state=await verifyAffiliateAccess(email);
         if(state !== 'ACTIVO') { showToast(accessMessage(state)); return; }
         localStorage.setItem('hamilton_affiliate_name',name);
+        localStorage.setItem('hamilton_affiliate_code',affiliateCode);
         localStorage.setItem('hamilton_affiliate_email',email);
         discount=Number(localStorage.getItem(discountKey())||25); loadCart();
         $('loginView').classList.add('hidden'); $('appView').classList.remove('hidden'); $('userEmail').textContent=name+' · '+email; $('discountSelect').value=discount; renderAll();
-      } catch(error) { showToast(error.message || 'No se pudo conectar con el Apps Script.'); }
-      finally { button.disabled=false; button.textContent='Solicitar acceso'; }
+        if (window.parent !== window) window.parent.postMessage({type:'hamilton-calculator-access', authorized:true}, '*');
+      } catch(error) { showToast(error.message); }
+      finally { button.disabled=false; button.textContent='Solicitar acceso a mi calculadora'; }
     });
-    $('logoutBtn').addEventListener('click',()=>{$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');$('loginName').value=localStorage.getItem('hamilton_affiliate_name')||'';$('loginEmail').value=email});
-    $('discountSelect').addEventListener('change',e=>{discount=Number(e.target.value);localStorage.setItem(discountKey(),discount);renderAll();showToast('Descuento actualizado al '+discount+'%.')});
+    $('logoutBtn').addEventListener('click',()=>{$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');$('loginName').value=localStorage.getItem('hamilton_affiliate_name')||'';$('loginEmail').value=email;$('loginAffiliateCode').value=localStorage.getItem('hamilton_affiliate_code')||'';if(window.parent!==window)window.parent.postMessage({type:'hamilton-calculator-access',authorized:false},'*')});
+    $('countrySelect').addEventListener('change',e=>{saveCart();country=e.target.value;localStorage.setItem('hamilton_country',country);brand='ALL';localStorage.setItem('hamilton_brand_'+country+'_'+email,brand);discount=Number(localStorage.getItem(discountKey())||25);cart={};loadCart();$('discountSelect').value=discount;$('searchInput').value='';renderAll();showToast('Catálogo cambiado a '+catalog().name+'.')});
+    $('discountSelect').addEventListener('change',e=>{discount=Number(e.target.value);localStorage.setItem(discountKey(),discount);renderAll();showToast('Descuento actualizado al '+discount+'%.')});$('brandFilter').addEventListener('change',e=>{brand=e.target.value;localStorage.setItem('hamilton_brand_'+country+'_'+email,brand);renderProducts();showToast(brand==='SEYTU'?'Mostrando catálogo SEYTÚ.':brand==='OMNILIFE'?'Mostrando catálogo Omnilife.':'Mostrando ambos catálogos.')});
     $('searchInput').addEventListener('input',renderProducts);$('clearSearch').addEventListener('click',()=>{$('searchInput').value='';renderProducts()});$('saveListBtn').addEventListener('click',saveList);$('clearCartBtn').addEventListener('click',()=>{cart={};renderAll();showToast('Lista vaciada.')});
     document.addEventListener('input',e=>{if(e.target.matches('[data-qty]')){const q=Math.max(0,parseInt(e.target.value||0,10));if(q)cart[e.target.dataset.qty]=q;else delete cart[e.target.dataset.qty];renderCart()}});
     document.addEventListener('click',e=>{const add=e.target.closest('[data-add]');if(add){const code=add.dataset.add;cart[code]=(cart[code]||0)+1;renderAll();showToast('Producto agregado.');return}const plus=e.target.closest('[data-plus]');if(plus){cart[plus.dataset.plus]=(cart[plus.dataset.plus]||0)+1;renderAll();return}const minus=e.target.closest('[data-minus]');if(minus){cart[minus.dataset.minus]=Math.max(0,(cart[minus.dataset.minus]||0)-1);if(!cart[minus.dataset.minus])delete cart[minus.dataset.minus];renderAll();return}const rem=e.target.closest('[data-remove]');if(rem){delete cart[rem.dataset.remove];renderAll();return}const load=e.target.closest('[data-load]');if(load){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||'[]')||[]}catch{};const l=lists[Number(load.dataset.load)];if(l){discount=l.discount;cart={...l.cart};$('discountSelect').value=discount;renderAll();showToast('Lista cargada.')}return}const del=e.target.closest('[data-delete]');if(del){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||'[]')||[]}catch{};lists.splice(Number(del.dataset.delete),1);localStorage.setItem(listKey(),JSON.stringify(lists));renderSaved();showToast('Lista eliminada.')}});
-    if(email){$('loginEmail').value=email; email=''; localStorage.removeItem('hamilton_affiliate_email')}
+    if(email){$('loginName').value=localStorage.getItem('hamilton_affiliate_name')||'';$('loginEmail').value=email;$('loginAffiliateCode').value=localStorage.getItem('hamilton_affiliate_code')||''; email=''; localStorage.removeItem('hamilton_affiliate_email')}
   </script></body></html>
