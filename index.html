@@ -22,10 +22,10 @@
     <section class="login-card">
       <div class="login-brand"><img class="brand-logo" src="logo-hamilton.png" alt="Logo Hamilton Networker"><span>Hamilton Networker</span></div>
       <h1>Calculadora de afiliados</h1>
-      <p>Consulta productos, puntos, precios según tu descuento y la ganancia estimada al vender al precio público.</p>
+      <p>Solicita acceso con tu nombre y correo electrónico. Después de que Hamilton autorice tu solicitud, podrás consultar productos, puntos, precios y ganancia estimada.</p>
       <form id="loginForm" class="login-form">
-        <div class="field"><label for="loginEmail">Tu correo electrónico</label><input id="loginEmail" type="email" autocomplete="email" placeholder="afiliado@correo.com" required></div>
-        <button class="btn btn-primary" type="submit">Entrar a mi calculadora</button>
+        <div class="field"><label for="loginName">Nombre completo</label><input id="loginName" type="text" autocomplete="name" placeholder="Tu nombre completo" required></div><div class="field"><label for="loginEmail">Correo electrónico</label><input id="loginEmail" type="email" autocomplete="email" placeholder="afiliado@correo.com" required></div>
+        <button class="btn btn-primary" type="submit">Solicitar acceso</button>
       </form>
       <div class="local-note"><strong>Tu herramienta de apoyo:</strong> la preparé para facilitarte algunos cálculos mientras planificas tus compras. Úsala para comparar descuentos, organizar tus productos, revisar tus puntos y visualizar tu ganancia estimada. Sigue aprendiendo, toma decisiones informadas y avanza paso a paso hacia tus objetivos.</div>
     </section>
@@ -102,16 +102,23 @@
       if (data && (data.activo === true || data.active === true || data.authorized === true)) return 'ACTIVO';
       return String(raw ?? '').trim().toUpperCase();
     }
+    async function registerAffiliateRequest(name, candidate){
+      const response = await fetch(ACCESS_SCRIPT_URL, {
+        method:'POST',
+        body:new URLSearchParams({name, email:candidate, country:'Ecuador'})
+      });
+      if (!response.ok) throw new Error('HTTP '+response.status);
+      const data = await response.json();
+      if (data && data.ok === false) throw new Error(data.error || 'No se pudo registrar la solicitud.');
+      return data;
+    }
     async function verifyAffiliateAccess(candidate){
-      const url = ACCESS_SCRIPT_URL + '?action=verificar_acceso&email=' + encodeURIComponent(candidate) + '&callback=_hamiltonAccessCallback';
-      try {
-        const response = await fetch(url, {method:'GET', mode:'cors', cache:'no-store'});
-        if (!response.ok) throw new Error('HTTP '+response.status);
-        const data = await response.json();
-        return accessState(data);
-      } catch (error) {
-        throw new Error('No se pudo consultar Google Sheets. Verifica que Apps Script esté implementado como aplicación web y permita acceso a cualquier usuario.');
-      }
+      const url = ACCESS_SCRIPT_URL + '?email=' + encodeURIComponent(candidate);
+      const response = await fetch(url, {method:'GET', mode:'cors', cache:'no-store'});
+      if (!response.ok) throw new Error('HTTP '+response.status);
+      const data = await response.json();
+      if (data && data.ok === false) throw new Error(data.error || 'No se pudo consultar el acceso.');
+      return accessState(data);
     }
     function accessMessage(state){
       if (state === 'PENDIENTE') return 'Tu correo fue registrado, pero todavía está pendiente de autorización. Escríbele a Hamilton por WhatsApp para confirmar tu afiliación.';
@@ -120,19 +127,23 @@
     }
     $('loginForm').addEventListener('submit', async e=>{
       e.preventDefault();
+      const name=$('loginName').value.trim();
       email=$('loginEmail').value.trim().toLowerCase();
-      if(!email)return;
+      if(!name || !email)return;
       const button=e.currentTarget.querySelector('button');
-      button.disabled=true; button.textContent='Verificando autorización…';
+      button.disabled=true; button.textContent='Registrando y verificando…';
       try {
+        await registerAffiliateRequest(name,email);
         const state=await verifyAffiliateAccess(email);
         if(state !== 'ACTIVO') { showToast(accessMessage(state)); return; }
-        localStorage.setItem('hamilton_affiliate_email',email); discount=Number(localStorage.getItem(discountKey())||25); loadCart();
-        $('loginView').classList.add('hidden'); $('appView').classList.remove('hidden'); $('userEmail').textContent=email; $('discountSelect').value=discount; renderAll();
-      } catch(error) { showToast(error.message); }
-      finally { button.disabled=false; button.textContent='Entrar a mi calculadora'; }
+        localStorage.setItem('hamilton_affiliate_name',name);
+        localStorage.setItem('hamilton_affiliate_email',email);
+        discount=Number(localStorage.getItem(discountKey())||25); loadCart();
+        $('loginView').classList.add('hidden'); $('appView').classList.remove('hidden'); $('userEmail').textContent=name+' · '+email; $('discountSelect').value=discount; renderAll();
+      } catch(error) { showToast(error.message || 'No se pudo conectar con el Apps Script.'); }
+      finally { button.disabled=false; button.textContent='Solicitar acceso'; }
     });
-    $('logoutBtn').addEventListener('click',()=>{$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');$('loginEmail').value=email});
+    $('logoutBtn').addEventListener('click',()=>{$('appView').classList.add('hidden');$('loginView').classList.remove('hidden');$('loginName').value=localStorage.getItem('hamilton_affiliate_name')||'';$('loginEmail').value=email});
     $('discountSelect').addEventListener('change',e=>{discount=Number(e.target.value);localStorage.setItem(discountKey(),discount);renderAll();showToast('Descuento actualizado al '+discount+'%.')});
     $('searchInput').addEventListener('input',renderProducts);$('clearSearch').addEventListener('click',()=>{$('searchInput').value='';renderProducts()});$('saveListBtn').addEventListener('click',saveList);$('clearCartBtn').addEventListener('click',()=>{cart={};renderAll();showToast('Lista vaciada.')});
     document.addEventListener('input',e=>{if(e.target.matches('[data-qty]')){const q=Math.max(0,parseInt(e.target.value||0,10));if(q)cart[e.target.dataset.qty]=q;else delete cart[e.target.dataset.qty];renderCart()}});
