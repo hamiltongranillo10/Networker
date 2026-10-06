@@ -1,6 +1,24 @@
 <!doctype html>
 <html lang="es">
 <head>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1330108458187229');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -751,7 +769,7 @@ html{scroll-behavior:smooth!important}
 .cart-result-image{width:100%;height:100%;object-fit:cover;display:block;}
 
 
-/* ===== FLUJO GUIADO SOLO EN MÓVIL ===== */
+/* ===== FLUJO GUIADO EN PC Y MÓVIL ===== */
 @media(max-width:600px){
   .mobile-flow-step.is-hidden{display:none!important}
   .selection-btn,.need-card{position:relative;transition:transform .25s var(--ease-premium),box-shadow .25s ease,border-color .25s ease,background .25s ease}
@@ -1130,5 +1148,21 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 });
 </script>
+<script>
+window.hgPixel = function(eventName, params) {
+  if (typeof window.fbq === 'function') {
+    window.fbq('trackCustom', eventName, params || {});
+  }
+};
+document.addEventListener('click', function(e) {
+  const countryBtn = e.target.closest('[data-country]');
+  if (countryBtn) window.hgPixel('SelectCountry', {country: countryBtn.dataset.country});
+  const needBtn = e.target.closest('[data-need]');
+  if (needBtn) window.hgPixel('SelectCartCategory', {category: needBtn.dataset.need});
+  const waLink = e.target.closest('a[href*="wa.me"]');
+  if (waLink) window.hgPixel('WhatsAppClick');
+});
+</script>
+
 </body>
 </html>
